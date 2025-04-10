@@ -1,0 +1,20 @@
+# Archivos del sistema
+*.env
+*.log
+*.out
+coverage.*
+.DS_Store
+Thumbs.db
+
+# Archivos del test
+controllers_test/
+*.test
+*.ps1
+
+# Archivos del editor
+.vscode/
+.idea/
+*.swp
+
+# Archivos del build
+main

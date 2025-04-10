@@ -1,0 +1,21 @@
+# Go
+bin/
+*.out
+*.test
+main
+
+# Docker
+*.log
+coverage.*
+respaldo-mongo-*/
+
+# Editor config
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Entorno
+.env

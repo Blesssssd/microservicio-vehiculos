@@ -1,0 +1,118 @@
+{
+    "info": {
+        "name": "Microservicio Veh\u00edculos - CRUD",
+        "_postman_id": "12345678-1234-5678-1234-567812345678",
+        "description": "Colecci\u00f3n para probar el CRUD de veh\u00edculos en el microservicio Go + MongoDB",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Crear Veh\u00edculo",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"brand\": \"Toyota\",\n    \"model\": \"Corolla\",\n    \"year\": 2020,\n    \"license_plate\": \"XYZ123\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/vehicles",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "vehicles"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Obtener Todos los Veh\u00edculos",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/vehicles",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "vehicles"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Obtener Veh\u00edculo por ID",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/vehicles/:id",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "vehicles",
+                        ":id"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Actualizar Veh\u00edculo",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"brand\": \"Mazda\",\n    \"model\": \"CX-5\",\n    \"year\": 2022,\n    \"license_plate\": \"ABC789\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/vehicles/:id",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "vehicles",
+                        ":id"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Eliminar Veh\u00edculo",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://localhost:8080/vehicles/:id",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "vehicles",
+                        ":id"
+                    ]
+                }
+            }
+        }
+    ]
+}
