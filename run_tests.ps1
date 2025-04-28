@@ -1,7 +1,7 @@
-Write-Host "==> Cargando variables de entorno desde .env..."
+Write-Host "==> Cargando variables de entorno desde .env.test..."
 
-# Leer .env y cargar como variables de entorno
-Get-Content ".env" | ForEach-Object {
+# Leer .env.test y cargar como variables de entorno
+Get-Content ".env.test" | ForEach-Object {
     if ($_ -and ($_ -notmatch "^\s*#") -and ($_ -match "=")) {
         $pair = $_ -split "=", 2
         $key = $pair[0].Trim()
