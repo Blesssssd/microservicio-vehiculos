@@ -1,4 +1,4 @@
-name: Build and Push Docker Image with Version
+name: Build and Push Docker Image for Microservicio Golang
 
 on:
   push:
@@ -36,5 +36,5 @@ jobs:
           context: .
           push: true
           tags: |
-            juanpotes0922/microservicio-vehiculos:latest
-            juanpotes0922/microservicio-vehiculos:${{ env.VERSION }}
+            juanpotes0922/microserviciogolang:latest
+            juanpotes0922/microserviciogolang:${{ env.VERSION }}
