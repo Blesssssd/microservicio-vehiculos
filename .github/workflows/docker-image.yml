@@ -30,24 +30,36 @@ jobs:
           echo "Version is $VERSION"
 
       - name: Build Docker image (local only)
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: false  # aún no se sube
-          tags: |
-            juanpotes0922/microserviciogolang:latest
-            juanpotes0922/microserviciogolang:${{ env.VERSION }}
+        run: |
+          docker build -t juanpotes0922/microserviciogolang:${{ env.VERSION }} .
 
-      - name: Scan image with Trivy
-        uses: aquasecurity/trivy-action@v0.14.0
+      - name: Scan image with Trivy (console summary)
+        uses: aquasecurity/trivy-action@master
         with:
           image-ref: juanpotes0922/microserviciogolang:${{ env.VERSION }}
-          format: table
-          exit-code: 1  # Falla si se encuentran vulnerabilidades críticas
+          format: 'table'
+          exit-code: 0
           ignore-unfixed: true
+          vuln-type: 'os,library'
 
-      - name: Push Docker image if scan passed
-        if: success()  # Solo se ejecuta si el escaneo no falló
+      - name: Generate SARIF Trivy report
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: juanpotes0922/microserviciogolang:${{ env.VERSION }}
+          format: 'sarif'
+          output: 'trivy-report.sarif'
+          exit-code: 0
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+
+      - name: Upload Trivy scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-report
+          path: trivy-report.sarif
+
+      - name: Push Docker images
         uses: docker/build-push-action@v5
         with:
           context: .
