@@ -38,17 +38,18 @@ jobs:
         with:
           image-ref: juanpotes0922/microserviciogolang:${{ env.VERSION }}
           format: 'table'
-          exit-code: 0
+          exit-code: 1 # Falla si hay vulnerabilidades
           ignore-unfixed: true
           vuln-type: 'os,library'
 
       - name: Generate SARIF Trivy report
+        if: always()
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: juanpotes0922/microserviciogolang:${{ env.VERSION }}
           format: 'sarif'
           output: 'trivy-report.sarif'
-          exit-code: 0
+          exit-code: 0 # Este puede seguir generándose para revisión
           ignore-unfixed: true
           vuln-type: 'os,library'
 
@@ -60,6 +61,7 @@ jobs:
           path: trivy-report.sarif
 
       - name: Push Docker images
+        if: success() # Solo se ejecuta si no falló nada antes
         uses: docker/build-push-action@v5
         with:
           context: .
