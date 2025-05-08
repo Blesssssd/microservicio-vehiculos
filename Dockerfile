@@ -7,8 +7,7 @@
             version="1.0"\
             description="Custom Golang image for building and running a Go application"
     
-    
-    
+
     WORKDIR /app
     
     COPY go.mod go.sum ./
