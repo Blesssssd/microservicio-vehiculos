@@ -12,16 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Pull Docker image from Docker Hub
-        run: |
-          docker pull juanpotes0922/microserviciogolang:latest
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Run container from image
-        run: |
-          docker run -d --name microserviciogolang -p 8080:8080 juanpotes0922/microserviciogolang:latest
+      - name: Set up Docker Compose
+        run: docker-compose -f docker-compose.yml up -d
 
-      - name: Wait for container to be ready
-        run: sleep 5
+      - name: Wait for containers to be ready
+        run: sleep 10
 
       - name: Test Hello World endpoint
         run: |
