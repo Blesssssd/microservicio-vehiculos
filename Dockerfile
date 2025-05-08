@@ -1,6 +1,14 @@
 # ---------- Etapa 1: Compilación ----------
     FROM golang:1.24.2-alpine AS builder
 
+
+# LABEL about the custom image
+    LABEL maintainer="jpotes0922"\
+            version="1.0"\
+            description="Custom Golang image for building and running a Go application"
+    
+    
+    
     WORKDIR /app
     
     COPY go.mod go.sum ./
