@@ -1,4 +1,5 @@
-version: '3.8'
+# The version line will generate a warning but can be kept for local compatibility
+# version: '3.8'
 
 services:
   mongo:
@@ -12,11 +13,13 @@ services:
       MONGO_INITDB_DATABASE: vehiculosdb
 
   microservicio:
-    image: microservicio-vehiculos
+    # For GitHub Actions, we need to use the published image
+    image: juanpotes0922/microserviciogolang:latest
     container_name: microservicio-vehiculos
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # Remove the build section as we're using the pre-built image
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     ports:
       - "8080:8080"
     depends_on:
@@ -24,7 +27,7 @@ services:
     env_file:
       - .env
     environment:
-      MONGO_URI: mongodb://mongo:27017  # Este reemplaza tu localhost
+      MONGO_URI: mongodb://mongo:27017
     restart: on-failure
 
 volumes:
