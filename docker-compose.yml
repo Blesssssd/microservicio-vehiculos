@@ -1,5 +1,5 @@
 # The version line will generate a warning but can be kept for local compatibility
-# version: '3.8'
+# version: '3.8' .. or 3.9 is recommended for local development
 
 services:
   mongo:
